@@ -1,1 +1,0 @@
-Testing GitKraken integration with GitHub
