@@ -1,3 +1,4 @@
+function [] = FFNAV_EKF_MakeParams(top_level_directory)
 %% FFNAV EKF Parameters===================================================
 % ========================================================================
 % Description: This script constructs the initial conditions for the 
@@ -17,6 +18,11 @@
 % Created by: Cory Fraser - July 2016
 % Last Edit : Cory Fraser - July 13, 2017
 %% ========================================================================
+
+arguments
+    top_level_directory = cd;
+end
+
 %General system constants
 mu              = 398600.4418;          %Earth's Gravitational Constant (km^3/s^2)
 R_Earth         = 6378;                 %Average Radius of the Earth
@@ -233,7 +239,7 @@ t0 = 0;
 %Assembling initial vector to be passed to the EKF simulation (1x118) 
 EKF0            = [ t0 state0' cov0 meas0'  ];
 filename        = 'FFNAV_PEO_Params.mat';
-pathname = fileparts('C:\Users\Cory\Desktop\FFNAV Data\');
+pathname = fileparts(top_level_directory);
 file_out = fullfile(pathname, filename);
 save(file_out)
 fprintf('\n Parameter file %s was created. \n', filename)
@@ -331,5 +337,4 @@ filename        = 'FFNAV_Busse_Params.mat';
 save(filename)
 fprintf('\n Parameter file %s was created. \n', filename)
 %}
-pause(3)
-clear
+end

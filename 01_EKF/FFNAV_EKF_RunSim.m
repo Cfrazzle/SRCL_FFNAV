@@ -21,7 +21,6 @@
 %           Initialization of the parameters for the EKF
 %   EKF_Sim.slx
 %           Simulink simulation of the EKF
-
 % Created by: Cory Fraser - October 2015
 % Latest Edit: Cory Fraser - August 8, 2017
 %% ========================================================================
@@ -33,14 +32,17 @@ fprintf('   FFNAV EKF (NONLINEAR RELATIVE DYNAMICS) SIMULATION         \n')
 fprintf('--------------------------------------------------------------\n')
 %Load initial conditions file
 
-if isempty(dir('C:\Users\Cory\Desktop\FFNAV Data\*Params.mat'))
+%top_level_directory = 'C:\Users\Cory\Desktop\FFNAV Data\';
+top_level_directory = 'C:\Users\CF4715\Desktop\FFNAV Data\';
+
+if isempty(dir([top_level_directory '*Params.mat']))
     fprintf('Initialization parameters were not found in this directory...\n')
     pause(2)
     fprintf('Generating initial parameters... \n')
-    FFNAV_EKF_MakeParams;
+    FFNAV_EKF_MakeParams(top_level_directory);
     pause(2)
 end
-pathname = fileparts('C:\Users\Cory\Desktop\FFNAV Data\');
+pathname = fileparts(top_level_directory);
 filename = 'FFNAV_PEO_Params.mat';
 file_in = fullfile(pathname, filename);
 
